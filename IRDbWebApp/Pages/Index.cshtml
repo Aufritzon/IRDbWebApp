@@ -1,0 +1,87 @@
+﻿@page
+@using IRDbWebApp.Models;
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="d-flex">
+
+    <div class="card border-3 border-dark add-movie-card d-none d-md-block">
+        <div class="card-body">
+            <h5 class="card-title text-center">Add a New Movie</h5>
+            <form method="post">
+                <div class="form-group">
+                    <label for="title">Title:</label>
+                    <input type="text" class="form-control" id="title" name="Title">
+                </div>
+                <div class="form-group">
+                    <label for="rating">Rating:</label>
+                    <input type="text" class="form-control" id="rating" name="Rating">
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration:</label>
+                    <input type="text" class="form-control" id="duration" name="Duration">
+                </div>
+                <div class="form-group">
+                    <label for="director">Director:</label>
+                    <input type="text" class="form-control" id="director" name="Director">
+                </div>
+                <div class="form-group">
+                    <label for="genre">Genre:</label>
+                    <input type="text" class="form-control" id="genre" name="Genre">
+                </div>
+                <div class="form-group">
+                    <label for="year">Year:</label>
+                    <input type="number" class="form-control" id="year" name="Year">
+                </div>
+
+                <button type="submit" class="btn btn-primary mt-4">Add Movie</button>
+            </form>
+        </div>
+    </div>
+
+    
+    @if (Model.Movies != null)
+    {
+        <div class="container">
+            <div class="row gy-4">
+                @foreach (MovieModel movie in Model.Movies)
+                {
+                    <div class="col-5 col-sm-5 col-md col-lg-3 col-xl-3">
+                        <div class="card custom-card border-3 border-dark">
+                            <div class="card-body">
+                                <h5 class="card-title text-center">@movie.Title</h5>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>Rating:</strong> @movie.Rating
+                                    </li>
+                                    <li>
+                                        <strong>Duration:</strong> @movie.Duration
+                                    </li>
+                                    <li>
+                                        <strong>Director:</strong> @movie.Director
+                                    </li>
+                                    <li>
+                                        <strong>Genre:</strong> @movie.Genre
+                                    </li>
+                                    <li>
+                                        <strong>Year:</strong> @movie.Year
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+    else
+    {
+        <h1>Failed to retrieve any movies</h1>
+    }
+
+</div>
+
+
+
